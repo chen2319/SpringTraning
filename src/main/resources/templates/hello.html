@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Login</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<!-- <p th:text="'Hello, ' + ${loginUsername.username} + '!'" /> -->
+	<p>Hello, <span style="font-weight:bold" th:text="${loginUsername.username}"></span></p>
+
+	<table border="8">
+		<tr>
+			<th>id</th>
+			<th>User Name</th>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td><a th:href="@{'/user/'+${user.value.id}}"
+				th:text="${user.value.id}"></a></td>
+				
+			<td th:text="${user.value.username}"></td>
+			
+			<td th:text="${user.value.email}"></td>
+			
+			<td><form th:action="@{'/user/'+${user.value.id}}"
+					th:method="delete">
+					<button type="submit" id="submitButton">Delete</button>
+				</form></td>
+		</tr>
+	</table>
+</body>
+</html>
